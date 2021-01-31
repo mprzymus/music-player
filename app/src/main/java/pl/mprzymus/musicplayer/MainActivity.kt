@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
         })
+        setTrackLength()
     }
 
     private fun changeSong(changeSong: () -> Unit) {
@@ -72,6 +73,13 @@ class MainActivity : AppCompatActivity() {
         changeSong()
         setTrackName()
         startSeekBarRefresh(mediaManager.mediaPlayer)
+        setTrackLength()
+    }
+
+    private fun setTrackLength() {
+        val totalAsSeconds = mediaManager.mediaPlayer.duration / 1000
+        val string = formatSecondsToMinutes(totalAsSeconds)
+        binding.trackLength.text = string
     }
 
     private fun startSeekBarRefresh(mediaPlayer: MediaPlayer) {
@@ -79,9 +87,15 @@ class MainActivity : AppCompatActivity() {
         runnable = Runnable {
             seekBar.progress = mediaPlayer.currentPosition
             handler.postDelayed(runnable, 100)
+            val totalAsSeconds = mediaManager.mediaPlayer.currentPosition / 1000
+            val string = formatSecondsToMinutes(totalAsSeconds)
+            binding.trackPosition.text = string
         }
         handler.postDelayed(runnable, 100)
     }
+
+    private fun formatSecondsToMinutes(totalAsSeconds: Int) =
+        "${totalAsSeconds / 60}:${String.format("%02d",totalAsSeconds % 60)}"
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun switchPlayButtonImage() {
