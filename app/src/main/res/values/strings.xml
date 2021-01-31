@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Music Player</string>
+    <string name="playpause">playPause</string>
+    <string name="previoussong">previousSong</string>
+    <string name="timeback">timeBack</string>
+    <string name="nextsong">nextSong</string>
+    <string name="timeahead">timeAhead</string>
+</resources>
