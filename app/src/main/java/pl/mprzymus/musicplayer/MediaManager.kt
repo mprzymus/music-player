@@ -4,12 +4,14 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.widget.SeekBar
 
-class MediaManager(private val tracks: List<Int>, context: Context) {
-    private var currentTrack = 0
+class MediaManager(val tracks: List<Int>, context: Context) {
+    private var _currentTrack = 0
+    val currentTrack: Int
+        get() = _currentTrack
     var mediaPlayer: MediaPlayer
 
     init {
-        mediaPlayer = MediaPlayer.create(context, tracks[currentTrack])
+        mediaPlayer = MediaPlayer.create(context, tracks[_currentTrack])
     }
 
     fun pauseButton() {
@@ -34,19 +36,19 @@ class MediaManager(private val tracks: List<Int>, context: Context) {
     }
 
     fun nextSong(context: Context, seekBar: SeekBar) {
-        currentTrack = (currentTrack + 1) % tracks.size
+        _currentTrack = (_currentTrack + 1) % tracks.size
         changeSong(context, seekBar)
     }
 
     fun previousSong(context: Context, seekBar: SeekBar) {
-        currentTrack = (currentTrack - 1) % tracks.size
+        _currentTrack = (_currentTrack - 1) % tracks.size
         changeSong(context, seekBar)
     }
 
     private fun changeSong(context: Context, seekBar: SeekBar) {
         val wasPlaying = mediaPlayer.isPlaying
         mediaPlayer.release()
-        mediaPlayer = MediaPlayer.create(context, tracks[currentTrack])
+        mediaPlayer = MediaPlayer.create(context, tracks[_currentTrack])
         if (wasPlaying) {
             mediaPlayer.start()
         }

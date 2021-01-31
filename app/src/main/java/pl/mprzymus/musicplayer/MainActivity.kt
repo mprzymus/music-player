@@ -40,12 +40,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         mediaManager.setSeekBarMaxValue(binding.seekBar)
+        setTrackName()
         startSeekBarRefresh(mediaManager.mediaPlayer)
     }
 
     private fun changeSong(changeSong: () -> Unit) {
         handler.removeCallbacks(runnable)
         changeSong()
+        setTrackName()
         startSeekBarRefresh(mediaManager.mediaPlayer)
     }
 
@@ -65,5 +67,13 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.playButton.setImageDrawable(getDrawable(R.drawable.ic_media_play))
         }
+    }
+
+    private fun setTrackName() {
+        val trackId = mediaManager.tracks[mediaManager.currentTrack]
+        val title = resources.getResourceName(trackId)
+        val endOfPathStr = "raw/"
+        val endOfPathIndex = title.indexOf(endOfPathStr) + endOfPathStr.length
+        binding.trackTittle.text = title.substring(endOfPathIndex)
     }
 }

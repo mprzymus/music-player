@@ -7,15 +7,15 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/trackTittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <ImageView
         android:id="@+id/playButton"
@@ -46,13 +46,13 @@
         android:id="@+id/timeBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="45dp"
+        android:contentDescription="@string/timeback"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/previousSong"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.789"
-        app:srcCompat="@android:drawable/ic_media_rew"
-        android:contentDescription="@string/timeback" />
+        app:srcCompat="@android:drawable/ic_media_rew" />
 
     <ImageView
         android:id="@+id/nextSong"
@@ -70,13 +70,13 @@
         android:id="@+id/timeAhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="45dp"
+        android:contentDescription="@string/timeahead"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextSong"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.789"
-        app:srcCompat="@android:drawable/ic_media_ff"
-        android:contentDescription="@string/timeahead" />
+        app:srcCompat="@android:drawable/ic_media_ff" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -91,12 +91,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
+        android:contentDescription="@string/stopbutton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/timeAhead"
         app:layout_constraintStart_toEndOf="@+id/playButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.789"
-        app:srcCompat="@android:drawable/picture_frame"
-        android:contentDescription="@string/stopbutton" />
+        app:srcCompat="@android:drawable/picture_frame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
