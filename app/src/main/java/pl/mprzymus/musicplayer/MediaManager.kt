@@ -60,4 +60,8 @@ class MediaManager(val tracks: List<Int>, context: Context) {
         mediaPlayer.stop()
         mediaPlayer.prepare()
     }
+
+    fun onSeekBarPositionChanged(position: Int) {
+        mediaPlayer.seekTo(position)
+    }
 }

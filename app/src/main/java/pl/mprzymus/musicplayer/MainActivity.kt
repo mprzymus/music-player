@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import pl.mprzymus.musicplayer.databinding.ActivityMainBinding
 
@@ -52,6 +53,18 @@ class MainActivity : AppCompatActivity() {
         mediaManager.setSeekBarMaxValue(binding.seekBar)
         setTrackName()
         startSeekBarRefresh(mediaManager.mediaPlayer)
+        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    mediaManager.onSeekBarPositionChanged(progress)
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
+        })
     }
 
     private fun changeSong(changeSong: () -> Unit) {
