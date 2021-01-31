@@ -27,6 +27,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.timeBack.setOnClickListener { mediaManager.onChangeTime(-10) }
         binding.timeAhead.setOnClickListener { mediaManager.onChangeTime(10) }
+
+        mediaManager.mediaPlayer.setOnCompletionListener {
+            changeSong {
+                mediaManager.nextSong(
+                    applicationContext,
+                    binding.seekBar
+                )
+            }
+            mediaManager.mediaPlayer.start()
+        }
         binding.nextSong.setOnClickListener {
             changeSong { mediaManager.nextSong(applicationContext, binding.seekBar) }
 
