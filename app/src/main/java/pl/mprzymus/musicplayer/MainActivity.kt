@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         binding.previousSong.setOnClickListener {
             changeSong { mediaManager.previousSong(applicationContext, binding.seekBar) }
         }
+        binding.stop.setOnClickListener {
+            mediaManager.onStop()
+            switchPlayButtonImage()
+        }
+
         mediaManager.setSeekBarMaxValue(binding.seekBar)
         startSeekBarRefresh(mediaManager.mediaPlayer)
     }

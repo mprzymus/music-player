@@ -44,9 +44,18 @@ class MediaManager(private val tracks: List<Int>, context: Context) {
     }
 
     private fun changeSong(context: Context, seekBar: SeekBar) {
+        val wasPlaying = mediaPlayer.isPlaying
         mediaPlayer.release()
         mediaPlayer = MediaPlayer.create(context, tracks[currentTrack])
-        mediaPlayer.start()
+        if (wasPlaying) {
+            mediaPlayer.start()
+        }
         setSeekBarMaxValue(seekBar)
+    }
+
+    fun onStop() {
+        mediaPlayer.seekTo(0)
+        mediaPlayer.stop()
+        mediaPlayer.prepare()
     }
 }

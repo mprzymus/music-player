@@ -5,4 +5,5 @@
     <string name="timeback">timeBack</string>
     <string name="nextsong">nextSong</string>
     <string name="timeahead">timeAhead</string>
+    <string name="stopbutton">stopButton</string>
 </resources>
